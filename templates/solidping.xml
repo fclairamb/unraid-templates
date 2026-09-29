@@ -1,0 +1,30 @@
+<Container version="2">
+  <Name>solidping</Name>
+  <Repository>ghcr.io/fclairamb/solidping:latest</Repository>
+  <Registry>https://github.com/fclairamb/solidping/pkgs/container/solidping</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Icon>https://raw.githubusercontent.com/fclairamb/solidping/main/res/logo_256.png</Icon>
+  <WebUI>http://[IP]:[PORT:4000]/</WebUI>
+  <Overview>SolidPing monitors websites, servers and services and alerts you when something breaks. 40 check types (HTTP, TCP, DNS, SSL expiry, ICMP ping, databases, message brokers, browser and JavaScript checks), alerts by email, Slack, Discord, Telegram, ntfy, Pushover, PagerDuty and webhooks, public status pages, incidents and private agents. Single container, SQLite by default so nothing else to install. First login: admin@solidping.io / solidpass, you are asked to change the password immediately.</Overview>
+  <Project>https://github.com/fclairamb/solidping</Project>
+  <Support>https://github.com/fclairamb/solidping/issues</Support>
+  <TemplateURL>https://raw.githubusercontent.com/fclairamb/unraid-templates/main/templates/solidping.xml</TemplateURL>
+  <ReadMe>https://raw.githubusercontent.com/fclairamb/solidping/main/README.md</ReadMe>
+  <Category>Tools:System</Category>
+  <ExtraSearchTerms>uptime monitoring status page alerting ping healthcheck uptime-kuma</ExtraSearchTerms>
+  <Requires>Nothing else. PostgreSQL is optional (set SP_DB_TYPE and SP_DB_URL).</Requires>
+  <Changes>Initial template.</Changes>
+  <Date>2026-09-29</Date>
+  <License>AGPL-3.0</License>
+  <Screenshot>https://raw.githubusercontent.com/fclairamb/solidping/main/deploy/casaos/solidping/screenshot-1.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/fclairamb/solidping/main/deploy/casaos/solidping/screenshot-2.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/fclairamb/solidping/main/deploy/casaos/solidping/screenshot-3.png</Screenshot>
+  <!-- Unraid's appdata is owned by nobody:users (99:100), so the container runs as that user. ICMP (ping) checks may need a raw socket, which a non-root user does not get: remove the user option from Extra Parameters if you use them. -->
+  <ExtraParams>--user 99:100</ExtraParams>
+  <Config Name="WebUI" Target="4000" Default="4000" Mode="tcp" Description="HTTP port of the web interface and API." Type="Port" Display="always" Required="true" Mask="false">4000</Config>
+  <Config Name="Appdata" Target="/data" Default="/mnt/user/appdata/solidping" Mode="rw" Description="SQLite database and uploaded files." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/solidping</Config>
+  <Config Name="Base URL" Target="SP_BASE_URL" Default="http://localhost:4000" Description="Public URL of this instance, used in links and notifications (for example https://status.example.com)." Type="Variable" Display="always" Required="false" Mask="false">http://localhost:4000</Config>
+  <Config Name="JWT secret" Target="SP_AUTH_JWT_SECRET" Default="" Description="Random string used to sign sessions. Set your own (openssl rand -hex 32), the built-in default is public." Type="Variable" Display="always" Required="true" Mask="true"></Config>
+</Container>

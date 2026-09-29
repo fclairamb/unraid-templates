@@ -1,0 +1,7 @@
+<CommunityApplications>
+  <Profile>
+    Templates for [SolidPing](https://solidping.io), a self-hostable uptime monitor: 40 check types, alerting, public status pages, incidents and private agents, in a single container. Support and bug reports: https://github.com/fclairamb/solidping/issues
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/fclairamb/solidping/main/res/logo_256.png</Icon>
+  <WebPage>https://solidping.io</WebPage>
+</CommunityApplications>
